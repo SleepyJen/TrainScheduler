@@ -20,6 +20,7 @@ main{
     border-color: rgb(73, 169, 201);
     min-height: 300px;
     font-family: 'McLaren', cursive;
+    margin-bottom: 10px;
 }
 
 .trainTitle{
@@ -44,4 +45,15 @@ main{
 .header, main{
     display: table;
     border-radius: 5px;
+}
+
+.inputs{
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+
+.btn{
+    margin: 5px;
 }
