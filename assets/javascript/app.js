@@ -23,6 +23,8 @@ $(document).ready(function () {
         let hours = parseInt(time.substring(0, 2));
         let minutes = parseInt(time.substring(3, 5));
         let convertedHours, convertedMinutes;
+        console.log(hours);
+
 
         let done = false;
 
@@ -47,7 +49,7 @@ $(document).ready(function () {
             }
         }
         if (hours < 10) {
-            if (hours.toString().length < 1) {
+            if (hours.toString().length < 2) {
                 convertedHours = "0" + hours.toString();
             }
         } else {
@@ -55,7 +57,7 @@ $(document).ready(function () {
         }
 
         if (minutes < 0) {
-            if (minutes.toString().lengtj) {
+            if (minutes.toString().length < 2) {
                 convertedMinutes = "0" + minutes.toString();
             }
 
@@ -64,19 +66,53 @@ $(document).ready(function () {
         }
 
         let convertedTime = convertedHours + ":" + convertedMinutes;
-        console.log(convertedTime);
 
-
-        // db.ref(name).push({
-        //     name: name,
-        //     dest: destination,
-        //     time: time,
-        //     freq: frequency
-        // });
+        db.ref(name).set({
+            name: name,
+            dest: destination,
+            time: convertedTime,
+            freq: frequency
+        });
     });
 
     db.ref().on('child_added', snap => {
+        console.log(snap.val());
+        let train = $('<div>').attr('class', 'trains');
+        let row = $('<div>').attr('class', 'row');
+        let n = $('<div>').attr('class', 'inline col-sm-2');
+        let d = $('<div>').attr('class', 'inline col-sm-2');
+        let t = $('<div>').attr('class', 'inline col-sm-2');
+        let f = $('<div>').attr('class', 'inline col-sm-2');
+        let mins = $('<div>').attr('class', 'inline col-sm-2');
 
+        let trainTime = moment(snap.val().time, "hh:mm").subtract(1, 'days');
+        let timeNow = moment();
+
+        let diff = timeNow.diff(trainTime, 'minutes');
+        let remainingMin = diff % snap.val().freq;
+        let minAway = snap.val().freq - remainingMin;
+
+        let nextTrain = timeNow.add(minAway, 'minutes');
+        nextTrain = moment(nextTrain).format("hh:mm");
+        console.log(nextTrain);
+
+        const info = snap.val();
+
+        n.text(info.name);
+        d.text(info.dest);
+        f.text(info.freq);
+        t.text(nextTrain);
+        mins.text(minAway);
+
+        row.append(n);
+        row.append(d);
+        row.append(f);
+        row.append(t);
+        row.append(mins);
+
+        train.append(row);
+        $('#box').append('<hr>');
+        $('#box').append(train);
     });
 
 });
