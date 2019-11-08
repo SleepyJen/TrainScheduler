@@ -24,11 +24,13 @@
             <h5 class="label">Current Train Schedule</h5>
         </div>
         <div class="trains">
-            <h6 class="label">Train Name</h6>
-            <h6 class="label">Destination</h6>
-            <h6 class="label">Frequency</h6>
-            <h6 class="label">Next Arrival</h6>
-            <h6 class="label">Minutes Away</h6>
+            <div class="row">
+                <div class="inline col-sm-2">Train Name</div>
+                <div class="inline col-sm-2">Destination</div>
+                <div class="inline col-sm-2">Frequency</div>
+                <div class="inline col-sm-2">Next Arrival</div>
+                <div class="inline col-sm-2">Minutes Away</div>
+            </div>
         </div>
     </main>
     <main class="mt-2">
@@ -45,12 +47,12 @@
                 <input type="text" id="destination" class="in form-control">
             </div>
             <div class="inputs">
-                <h6 class="inTitle">Train Time (HH:mm - military time)</h6>
+                <h6 class="inTitle">Train Arrival (HH:mm - military time)</h6>
                 <input type="text" id="time" class="in form-control">
             </div>
             <div class="inputs">
                 <h6 class="inTitle">Frequency</h6>
-                <input type="text" id="Frequency" class="in form-control">
+                <input type="text" id="frequency" class="in form-control">
             </div>
             <button class="btn btn-primary">Submit</button>
         </form>

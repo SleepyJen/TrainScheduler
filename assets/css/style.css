@@ -4,7 +4,7 @@ margin-top: 5px;
 
 .header{
     height: 25vh;
-    background-color: rgb(56, 28, 28);
+    background-color: rgb(85, 43, 43);
     width: 100%;
 }
 #title{
@@ -35,6 +35,11 @@ main{
     vertical-align: middle;
     margin-left: 2px;
     padding-right: 130px;
+}
+
+.inline{
+    display: inline-block;
+    margin-right: 20px;
 }
 
 .trains{
