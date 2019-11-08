@@ -1,0 +1,47 @@
+body{
+margin-top: 5px;
+}
+
+.header{
+    height: 25vh;
+    background-color: rgb(56, 28, 28);
+    width: 100%;
+}
+#title{
+    display: table-cell;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
+main{
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(73, 169, 201);
+    min-height: 300px;
+    font-family: 'McLaren', cursive;
+}
+
+.trainTitle{
+    height: 5vh;
+    background-color: rgb(73, 169, 201);
+    display: table;
+    width: 100%;
+}
+
+.label{
+    display: table-cell;
+    vertical-align: middle;
+    margin-left: 2px;
+    padding-right: 130px;
+}
+
+.trains{
+    margin-top: 2px;
+    margin-left: 5px;
+}
+
+.header, main{
+    display: table;
+    border-radius: 5px;
+}
