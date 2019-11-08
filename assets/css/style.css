@@ -2,9 +2,13 @@ body{
 margin-top: 5px;
 }
 
+.bod{
+    background-color: rgb(247, 236, 222);
+}
+
 .header{
     height: 25vh;
-    background-color: rgb(85, 43, 43);
+    background-color: rgb(73, 169, 201);
     width: 100%;
 }
 #title{
@@ -21,6 +25,7 @@ main{
     min-height: 300px;
     font-family: 'McLaren', cursive;
     margin-bottom: 10px;
+    background-color: aliceblue;
 }
 
 .trainTitle{
@@ -58,7 +63,10 @@ main{
     margin-right: 5px;
 }
 
-
 .btn{
     margin: 5px;
+}
+
+.line{
+    width: 95%;
 }

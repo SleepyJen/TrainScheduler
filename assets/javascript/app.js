@@ -13,6 +13,7 @@ $(document).ready(function () {
 
     const db = firebase.database();
     var destination, time, frequency, name;
+    var convertedHours, convertedMinutes;
 
     $('.btn').on('click', function (e) {
         e.preventDefault();
@@ -20,12 +21,18 @@ $(document).ready(function () {
         destination = $('#destination').val();
         time = $('#time').val();
         frequency = $('#frequency').val();
-        let hours = parseInt(time.substring(0, 2));
-        let minutes = parseInt(time.substring(3, 5));
-        let convertedHours, convertedMinutes;
-        console.log(hours);
 
+        if (name != null && destination != null && time != null && frequency != null) {
+            let hours = parseInt(time.substring(0, 2));
+            let minutes = parseInt(time.substring(3, 5));
+            pushIt(hours, minutes);
+        } else {
+            alert("Invalid Inputs");
+        }
 
+    });
+
+    function pushIt(hours, minutes) {
         let done = false;
 
         while (!done) {
@@ -67,13 +74,20 @@ $(document).ready(function () {
 
         let convertedTime = convertedHours + ":" + convertedMinutes;
 
-        db.ref(name).set({
+        db.ref(name + destination).set({
             name: name,
             dest: destination,
             time: convertedTime,
             freq: frequency
+        }).catch(err => {
+            alert(err);
         });
-    });
+
+        $('#name').val('');
+        $('#destination').val('');
+        $('#time').val('');
+        $('#frequency').val('');
+    }
 
     db.ref().on('child_added', snap => {
         console.log(snap.val());
@@ -84,6 +98,7 @@ $(document).ready(function () {
         let t = $('<div>').attr('class', 'inline col-sm-2');
         let f = $('<div>').attr('class', 'inline col-sm-2');
         let mins = $('<div>').attr('class', 'inline col-sm-2');
+        let line = $('<hr>').attr('class', 'line');
 
         let trainTime = moment(snap.val().time, "hh:mm").subtract(1, 'days');
         let timeNow = moment();
@@ -111,7 +126,7 @@ $(document).ready(function () {
         row.append(mins);
 
         train.append(row);
-        $('#box').append('<hr>');
+        $('#box').append(line);
         $('#box').append(train);
     });
 
